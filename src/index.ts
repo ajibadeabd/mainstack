@@ -23,6 +23,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 // Add middleware to serve the Swagger docs
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Add prifix to serve as base url
