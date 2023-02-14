@@ -1,0 +1,182 @@
+openapi: 3.0.0
+info:
+  title: Product Management API
+  description: A simple API for managing products
+  version: 1.0.0
+servers:
+  - url: http://localhost:4444/api
+paths:
+  /products:
+    get:
+      summary: Get all products
+      operationId: getAllProducts
+      parameters:
+        - name: limit
+          in: query
+          description: "Number of products to return per page"
+          required: false
+          type: integer
+          default: 10
+        - name: page
+          in: query
+          description: "Page number to return"
+          required: false
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '500':
+          description: Internal server error
+    post:
+      summary: Create a new product
+      operationId: createProduct
+      requestBody:
+         description: Product object
+         required: true
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 name:
+                   type: string
+                 price:
+                   type: number
+                 description:
+                   type: string 
+      requestBody:
+        description: Product object that needs to be added to the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /products/{id}:
+    get:
+      summary: Get a product by ID
+      operationId: getProductById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the product to get
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+        '500':
+          description: Internal server error
+    put:
+      summary: Update a product by ID
+      operationId: updateProduct
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the product to get
+          schema:
+            type: string
+      requestBody:
+         description: Product object
+         required: true
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 name:
+                   type: string
+                 price:
+                   type: number
+                 description:
+                   type: string 
+      requestBody:
+        description: Product object that needs to be updated to the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+    delete:
+      summary: Delete a product by ID
+      operationId: deleteProduct
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the product to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Confirmation message
+                    example: Product deleted
+        '404':
+          description: Product not found
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - name
+        - description
+        - price
+      properties:
+        id:
+          type: string
+          description: The unique identifier for a product
+        name:
+          type: string
+          description: The name of the product
+        description:
+          type: string
+          description: The description of the product
+        price:
+          type: number
+          description: The price of
