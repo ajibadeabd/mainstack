@@ -24,7 +24,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 // Add middleware to serve the Swagger docs
 app.get("/", (req, res) => {
-  return res.send(`<a href="/api-docs">check docs</>`);
+  return res.send(`<h1><a href="/api-docs">check docs</a></h1`);
 });
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
