@@ -10,7 +10,7 @@ router.get("/products", productController.getAllProducts);
 
 // Define a GET route to retrieve a specific product by ID, with request validation middleware
 router.get(
-  "/products/:id",
+  "/product/:id",
   ValidatorFactories.getProductById, // Custom validation middleware function to check if product ID exists
   validatorRule, // Custom validation middleware function to check if there are any validation errors
   productController.getProductById // Controller function to retrieve product details
@@ -18,7 +18,7 @@ router.get(
 
 // Define a POST route to create a new product, with request validation middleware
 router.post(
-  "/products",
+  "/product",
   ValidatorFactories.createProductValidation, // Custom validation middleware function to check if request body contains required fields
   validatorRule, // Custom validation middleware function to check if there are any validation errors
   productController.createProduct // Controller function to create a new product
@@ -26,7 +26,7 @@ router.post(
 
 // Define a PUT route to update a product by ID, with request validation middleware
 router.put(
-  "/products/:id",
+  "/product/:id",
   ValidatorFactories.updateProductValidation, // Custom validation middleware function to check if request body contains required fields
   validatorRule, // Custom validation middleware function to check if there are any validation errors
   productController.updateProduct // Controller function to update an existing product
@@ -34,7 +34,7 @@ router.put(
 
 // Define a DELETE route to delete a product by ID, with request validation middleware
 router.delete(
-  "/products/:id",
+  "/product/:id",
   ValidatorFactories.getProductById, // Custom validation middleware function to check if product ID exists
   validatorRule, // Custom validation middleware function to check if there are any validation errors
   productController.deleteProduct // Controller function to delete an existing product

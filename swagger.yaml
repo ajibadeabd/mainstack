@@ -34,6 +34,7 @@ paths:
                   $ref: '#/components/schemas/Product'
         '500':
           description: Internal server error
+  /product:
     post:
       summary: Create a new product
       operationId: createProduct
@@ -68,7 +69,7 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
-  /products/{id}:
+  /product/{id}:
     get:
       summary: Get a product by ID
       operationId: getProductById
