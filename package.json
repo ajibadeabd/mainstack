@@ -5,6 +5,7 @@
   "description": "A simple E-commerce API built with Node.js, Express, and Mongoose",
   "scripts": {
     "start": "node  -r dotenv/config dist/index.js",
+    "start:dev": "nodemon  -r dotenv/config src/index.ts",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
