@@ -56,11 +56,9 @@ class ProductController {
         { name, description, price },
         { new: true }
       );
-      if (updatedProduct) {
-        return res.status(200).json(updatedProduct);
-      } else {
-        return res.status(404).json({ message: "Product not found" });
-      }
+      if (updatedProduct) 
+        return res.status(200).json({ message: "Product Updated" });
+      return res.status(404).json({ message: "Product not found" });
     } catch (error: any) {
       return res.status(400).json({ message: error.message });
     }
